@@ -1,9 +1,16 @@
 var express = require('express');
 var moment = require('moment');
+var fs = require('fs');
+var markdown = require('markdown').markdown;
 var app = express();
 
 app.get('/', function (req, res) {
-  res.send('Hello World!');
+  fs.readFile('README.md', function (err, data) {
+    if (err) {
+      return console.error(err);
+    }
+    res.send(markdown.toHTML(data.toString()));
+  });
 });
 
 app.get('/:date', function (req, res) {
@@ -25,4 +32,3 @@ app.get('/:date', function (req, res) {
 app.listen(8080, function () {
   console.log('Server running on 8080');
 });
-
