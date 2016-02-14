@@ -1,4 +1,4 @@
-# Timpstamp
+# Timestamp
 
 User Stories:
 
